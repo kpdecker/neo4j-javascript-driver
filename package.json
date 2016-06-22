@@ -1,6 +1,6 @@
 {
   "name": "@kpdecker/neo4j-driver",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "description": "Connect to Neo4j 3.0.0 and up from JavaScript",
   "author": "Neo Technology Inc.",
   "license": "Apache-2.0",
