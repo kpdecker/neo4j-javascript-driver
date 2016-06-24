@@ -301,6 +301,13 @@ class Unpacker {
       return int(value);
     }
   }
+  unpackLargeInt(low, high) {
+    if( this._config.preferNativeInt ) {
+      return Integer.asNative(low, high);
+    } else {
+      return Integer.fromBits(low, high);
+    }
+  }
 
   unpack ( buffer ) {
     let marker = buffer.readUInt8();
@@ -325,7 +332,7 @@ class Unpacker {
     } else if (marker == INT_64) {
       let high = buffer.readInt32();
       let low  = buffer.readInt32();
-      return new Integer( low, high );
+      return this.unpackLargeInt( low, high );
     } else if (marker == STRING_8) {
       return utf8.decode( buffer, buffer.readUInt8());
     } else if (marker == STRING_16) {
